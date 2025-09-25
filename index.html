@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment AbiiBanido99</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(30, 60, 114, 0.85), rgba(30, 60, 114, 0.9)), url('https://files.catbox.moe/kzr6tb.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 50px;
+            color: #4a9eff;
+            background: rgba(255, 255, 255, 0.2);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .logo p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .payment-info {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .payment-info h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-info h2 i {
+            color: #4a9eff;
+        }
+
+        .payment-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .payment-detail .label {
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .payment-detail .value {
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: rgba(74, 158, 255, 0.3);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(74, 158, 255, 0.5);
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #4a9eff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3a8eef;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 158, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo h1 {
+                font-size: 24px;
+            }
+            
+            .payment-info h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-wallet"></i>
+            <h1>Payment Gateway</h1>
+            <p>Lakukan pembayaran dengan mudah dan aman</p>
+        </div>
+        
+        <div class="payment-info">
+            <h2><i class="fas fa-mobile-alt"></i> Payment Dana</h2>
+            <div class="payment-detail">
+                <span class="label">Nomor:</span>
+                <span class="value">089510168678 <button class="copy-btn" onclick="copyToClipboard('089510168678')">Salin</button></span>
+            </div>
+            <div class="payment-detail">
+                <span class="label">Nama:</span>
+                <span class="value">YUANITA <button class="copy-btn" onclick="copyToClipboard('YUANITA')">Salin</button></span>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button class="btn btn-primary" onclick="openPaymentApp()">
+                <i class="fab fa-dana"></i> Bayar dengan Dana
+            </button>
+            <button class="btn btn-secondary" onclick="openTelegram()">
+                <i class="fab fa-telegram"></i> Saluran Telegram
+            </button>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        Teks berhasil disalin!
+    </div>
+    
+    <footer>
+        &copy; 2023 Payment Gateway. All rights reserved.
+    </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            showNotification();
+        }
+        
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        function openPaymentApp() {
+            // Redirect ke aplikasi Dana (jika tersedia) atau tampilkan instruksi
+            window.open('https://www.dana.id/', '_blank');
+        }
+        
+        function openTelegram() {
+            window.open('https://t.me/murbandfreeabii', '_blank');
+        }
+    </script>
+</body>
+</html>
